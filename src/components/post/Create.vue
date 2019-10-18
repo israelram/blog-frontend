@@ -19,13 +19,9 @@
                     <label for="autor"> Author </label>
                         <input type="text" id="author" v-model="author" name="author" class="form-control" >
                 </div>
-                <pre><code>          &lt;div class="form-group col-md-4 pull-right"&gt;
-              &lt;button class="btn btn-success" type="submit"&gt; Create Post &lt;/button&gt;
-          &lt;/div&gt;          
-      &lt;/form&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-</code> 
+                <div class="form-group col-md-4 pull-right">
+                    <button class="btn btn-success" type="submit"> Create Post </button>
+                </div>
             </form>
         </div>
     </div>
@@ -33,15 +29,15 @@
 
 <script>
 import axios from "axios";
-import { server } from ".../.../utils/helper";
-import router from ".../.../router";
+import { server } from "../../utils/helper";
+import router from "../../router";
 export default {
     data() {
         return {
             title: "",
             description: "",
             body: "",
-            author: "",
+            author: "Israel Ramirez",
             date_posted: ""
         };
     },
@@ -53,13 +49,15 @@ export default {
             let postData = {
                 title: this.title,
                 description: this.description,
+                body: this.body,
                 author: this.author,
                 date_posted: this.date_posted
             };
             this.__submitToServer(postData);
         },
         __submitToServer(data) {
-            axios.post(<code>${server.baseURL}/blog/post</code>, data).then(data => {
+            axios.post('${server.baseURL}/blog/post', data).then(data => {
+                console.log(data);
                 router.push({ name: "home"});
             });
         }
