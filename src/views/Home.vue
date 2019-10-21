@@ -37,7 +37,7 @@
 
 <script>
 // @ is an alias to /src
-import { server } from "@/utils/helper";
+import {server} from "@/utils/helper";
 import axios from "axios";
 
 export default {
@@ -49,14 +49,14 @@ export default {
   created() {
     this.fetchPosts();
   },
-  methosd: {
+  methods: {
     fetchPosts() {
       axios
         .get('${server.baseURL}/blog/posts')
         .then(data => (this.posts = data.data));
     },
     deletePost(id) {
-      axios.delete('${sever.baseURL}/blog/delete?postID=${id}').them(data => {
+      axios.delete('${sever.baseURL}/blog/delete?postID=${id}').then(data => {
         console.log(data);
         window.location.reload();
       });
